@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JENOVIC NGOY - Portfolio IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navigation moderne */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #555;
+            margin-left: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections avec effet de verre */
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            margin: 30px 0;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Carte de présentation professionnelle */
+        .info-personnelle {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-personnelle p {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            transition: 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-personnelle p:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .info-personnelle strong {
+            color: #667eea;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Compétences en badges modernes */
+        #competences ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+        }
+
+        #competences ul li {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transition: 0.3s;
+            border: none;
+            cursor: default;
+        }
+
+        #competences ul li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Projets en cartes */
+        .projet {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 6px solid transparent;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-image-slice: 1;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 0;
+        }
+
+        .projet:hover::before {
+            opacity: 0.05;
+        }
+
+        .projet:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .projet h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .projet p {
+            color: #666;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Formulaire de contact stylisé */
+        form {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+            background: white;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer élégant */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #333;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Design responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                border-radius: 20px;
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .info-personnelle {
+                grid-template-columns: 1fr;
+            }
+
+            #competences ul {
+                justify-content: center;
+            }
+        }
+
+        /* Animation d'entrée */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Badge matricule spécial */
+        .info-personnelle p:last-child {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left: 4px solid #333;
+        }
+
+        .info-personnelle p:last-child strong {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>JENOVIC NGOY</h1>
+    <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="accueil">
+    <h2>Présentation</h2>
+    <div class="info-personnelle">
+        <p><strong>Nom</strong> NGOY</p>
+        <p><strong>Post-nom</strong> MWILAMBWE</p>
+        <p><strong>Prénom</strong> JENOVIC</p>
+        <p><strong>Promotion</strong> BAC 2 Intelligence Artificielle</p>
+        <p><strong>Matricule</strong> 2O24023047</p>
+    </div>
+    
+</section>
+
+<section id="competences">
+    <h2>Competences</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Python (Débutant)</li>
+        <li>Django</li>
+    </ul>
+</section>
+
+<section id="projets">
+    <h2>Réalisations</h2>
+    
+    <div class="projet">
+        <h3>🏥 Plateforme Médicale</h3>
+        <p>Système innovant de gestion des dossiers médicaux pour les centres de santé. Optimisation des processus et sécurisation des données patients.</p>
+    </div>
+    
+    <div class="projet">
+        <h3>📚 Application Scolaire</h3>
+        <p>Solution complète pour la gestion scolaire : suivi des élèves, consultation des résultats en ligne, et communication parents-enseignants.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Collaborons</h2>
+    <form>
+        <input type="text" placeholder="Nom complet" required>
+        <input type="email" placeholder="Email professionnel" required>
+        <textarea placeholder="Décrivez votre projet..." rows="5"></textarea>
+        <button type="submit">Envoyer le message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 - JENOVIC NGOY • BAC 2 Intelligence Artificielle</p>
+    <p style="font-size: 0.9rem; margin-top: 10px; color: #666;">portfolio professionnel</p>
+</footer>
+
+</body>
+</html>
